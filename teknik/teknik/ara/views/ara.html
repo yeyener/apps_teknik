@@ -1,0 +1,13 @@
+﻿<section ng-controller="araController">
+	<h1 app-color="red">{{Arama.Baslik}}</h1>
+	<br />
+	<div class="col-lg-6">
+		<div class="input-group">
+			<input type="text" class="form-control" ng-model="Arama.AramaKriterleri.Sorgu">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" ng-click="Arama.aramaYap()"> Ara </button>
+			</span>
+		</div><!-- /input-group -->
+	</div><!-- /.col-lg-6 -->
+
+</section>
