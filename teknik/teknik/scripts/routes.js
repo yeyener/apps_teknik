@@ -13,8 +13,8 @@ define([], function ()
 			'/arama': {
 				templateUrl: '/teknik/ara/views/ara.html',
 				dependencies: [
-					'../teknik/ara/js/sunucuAramaIletisim',
                     '../teknik/ara/js/araController',
+					'../teknik/ara/js/classlar',
 					'../teknik/scripts/directives/app-color'
 				]
 			},

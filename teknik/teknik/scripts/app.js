@@ -1,4 +1,4 @@
-define(['routes','services/dependencyResolverFor'], function(config, dependencyResolverFor)
+define(['routes', 'services/dependencyResolverFor'], function (config, dependencyResolverFor)
 {
     var app = angular.module('app', ['ngRoute']);
 
@@ -11,16 +11,15 @@ define(['routes','services/dependencyResolverFor'], function(config, dependencyR
         '$filterProvider',
         '$provide',
 
-        function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide)
+        function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide)
         {
 	        app.controller = $controllerProvider.register;
 	        app.directive  = $compileProvider.directive;
 	        app.filter     = $filterProvider.register;
 	        app.factory    = $provide.factory;
-	        app.service    = $provide.service;
-
+	        app.service = $provide.service;
+	        app.provide = $provide;
             $locationProvider.html5Mode(true);
-	        
             if(config.routes !== undefined)
             {
                 angular.forEach(config.routes, function(route, path)

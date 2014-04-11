@@ -2,20 +2,23 @@ require.config({
     baseUrl: 'scripts',
     paths: {
     	'angular': '../../lib/angular/angular',
-    	'angular-route': '../../lib/angular/angular-route/angular-route',
-    	'bootstrap': '../../bootstrap/js/bootstrap.min',
-    	'jquery': '../../lib/jquery/jquery-2.1.0.min'
+    	'angular-route': '../../lib/angular/angular-route/angular-route'
+		//,
+    	//'bootstrap': '../../bootstrap/js/bootstrap.min',
+    	//'jquery': '../../lib/jquery/jquery-2.1.0.min'
     },
 	shim: {
 		'app': {
-			deps: ['angular', 'angular-route', 'bootstrap']
+			//deps: ['angular', 'angular-route', 'bootstrap']
+			deps: ['angular', 'angular-route']
 		},
 		'angular-route': {
 			deps: ['angular']
-		},
-		'bootstrap': {
-			deps: ['jquery']
 		}
+		//,
+		//'bootstrap': {
+		//	deps: ['jquery']
+		//}
 	}
 });
 

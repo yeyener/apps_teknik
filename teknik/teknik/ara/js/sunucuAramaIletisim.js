@@ -1,13 +1,13 @@
 ﻿define(['app'], function (app) {
-	app.service('sunucuAramaIletisimmmmm',
+	app.service('sunucuAramaIletisim',
 	[
-		'$scope',
-		function($scope) {
-			this.aramaYap = function() { alert("servis");
-				return "aa";
-			};
+		'$http',
+		function ($http)
+		{
+			this.veriAl = function ()
+			{
+				return "sunucudan döneen bilgi";
+			}
 		}
-		
-    ]);
-
+	]);
 });
