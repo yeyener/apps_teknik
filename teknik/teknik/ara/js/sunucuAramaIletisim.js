@@ -1,13 +1,23 @@
-﻿define(['app'], function (app) {
+﻿define(['app'], function(app)
+{
 	app.service('sunucuAramaIletisim',
 	[
-		'$http',
-		function ($http)
+		'$http', '$resource',
+		function ($http, res)
 		{
-			this.veriAl = function ()
+			this.veriAl = function()
 			{
 				return "sunucudan döneen bilgi";
 			}
+
+			this.manuel = function()
+			{
+				return $resource('phones/:phoneId.json', {}, {
+					query: { method: 'GET', params: { phoneId: 'phones' }, isArray: true }
+				});
+			}
 		}
 	]);
+
 });
+
