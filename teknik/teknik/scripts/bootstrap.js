@@ -1,13 +1,12 @@
 require.config({
 	baseUrl: 'scripts',
 	paths: {
-		'angular': '../../lib/angular/angular',
-		'angular-route': '../../lib/angular/angular-route/angular-route',
-		'angular-resource': '../../lib/angular/angular-resource/angular-resource'
+		'angular': '/lib/angular/angular',
+		'angular-route': '/lib/angular/angular-route/angular-route',
+		'angular-resource': '/lib/angular/angular-resource/angular-resource'
 	},
 	shim: {
 		'app': {
-			//deps: ['angular', 'angular-route', 'bootstrap']
 			deps: ['angular', 'angular-route', 'angular-resource']
 		},
 		'angular-route': {

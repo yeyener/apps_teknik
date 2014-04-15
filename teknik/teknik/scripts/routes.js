@@ -2,20 +2,19 @@ define([], function ()
 {
 	//alert("routes");
 	return {
-		defaultRoutePath: '/',
+		defaultRoutePaths: '/teknik/',
 		routes: {
+			'/teknik': {
+				templateUrl: '/teknik/ara/views/ara.html',
+				dependencies: [
+                    '../teknik/ara/js/araController',
+					'../teknik/scripts/directives/app-color'
+				]
+			},
 			'/home': {
 				templateUrl: '/teknik/views/home.html',
 				dependencies: [
                     'controllers/HomeViewController'
-				]
-			},
-			'/arama': {
-				templateUrl: '/teknik/ara/views/ara.html',
-				dependencies: [
-                    '../teknik/ara/js/araController',
-					'../teknik/ara/js/classlar',
-					'../teknik/scripts/directives/app-color'
 				]
 			},
 			'/about/:person': {
@@ -31,7 +30,6 @@ define([], function ()
                     'controllers/ContactViewController'
 				]
 			}
-			
 		}
 	};
 });

@@ -1,13 +1,29 @@
 ﻿<section ng-controller="araController">
-	<h1 app-color="red">{{Arama.Baslik}}</h1>
+	<h1 app-color="black">{{Arama.Baslik}}</h1>
 	<br />
-	<div class="col-lg-6">
+	<div class="col-lg-12">
 		<div class="input-group">
 			<input type="text" class="form-control" ng-model="Arama.AramaKriterleri.Sorgu">
 			<span class="input-group-btn">
 				<button class="btn btn-default" type="button" ng-click="Arama.aramaYap()"> Ara </button>
 			</span>
 		</div>
+		<br />
+		<br />
+		<div ng-show="Arama.AramaSonuc.hits.total > 0">
+			<a href="#">Toplam : <span class="badge">{{Arama.AramaSonuc.hits.total}}</span></a>
+		</div>
+		<br />
+		<nav class="navbar navbar-default" role="navigation">
+			<div ng-repeat="facet in Arama.AramaSonuc.facets.policeGrubu.terms">
+				<button type="button" class="btn btn-sm navbar-btn">{{facet.term}} <span class="badge">{{facet.count}}</span></button>
+				
+			</div>
+		</nav>
+		<div>
+			<ul class="list-group">
+				<li ng-repeat="sonuc in Arama.AramaSonuc.hits.hits" class="list-group-item"><h5>{{sonuc.fields.sirketPoliceNo[0]}}</h5><p>{{sonuc.fields.sigortaliAcik[0]}}</p></li>
+			</ul>
+		</div>
 	</div>
-
 </section>

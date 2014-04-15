@@ -10,15 +10,15 @@ define(['routes', 'services/dependencyResolverFor'], function (config, dependenc
         '$compileProvider',
         '$filterProvider',
         '$provide',
+		'$resourceProvider',
 
-        function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide)
+        function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $resourceProvider)
         {
 	        app.controller = $controllerProvider.register;
 	        app.directive  = $compileProvider.directive;
 	        app.filter     = $filterProvider.register;
 	        app.factory    = $provide.factory;
-	        app.service = $provide.service;
-        	//app.provide = $provide;
+	        app.service    = $provide.service;
 
             $locationProvider.html5Mode(true);
             if(config.routes !== undefined)
@@ -31,6 +31,7 @@ define(['routes', 'services/dependencyResolverFor'], function (config, dependenc
 
             if(config.defaultRoutePaths !== undefined)
             {
+	            
                 $routeProvider.otherwise({redirectTo:config.defaultRoutePaths});
             }
         }

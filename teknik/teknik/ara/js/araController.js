@@ -4,6 +4,7 @@
 		'$scope', 'sunucuAramaIletisim',
         function ($scope, sai) {
         	$scope.Arama = new Arama(sai);
+	        
         }
     ]);
 });
@@ -15,9 +16,26 @@ function Arama(sunucuAramaIletisim)
 	this.sunucuAramaIletisim = sunucuAramaIletisim;
 	this.Baslik = "Poliçe Ara";
 	this.AramaKriterleri = new AramaKriterleri();
-	this.aramaYap = function () {
-		alert(sunucuAramaIletisim.veriAl());
+	this.AramaSonuc = new AramaSonuc();
+	this.aramaYap = function ()
+	{
+		//var gelen = sunucuAramaIletisim.manuel2();
+		//this.AramaSonuc = gelen;
+
+		sunucuAramaIletisim.veriAl().then(function(sonuc)
+		{
+			alert(sonuc);
+		});
 	};
+
+	
+}
+
+function AramaSonuc()
+{
+	this.hits = new Object();
+	this.hits.total = 0;
+	this.hits.hits = [];
 }
 
 function AramaKriterleri() {
