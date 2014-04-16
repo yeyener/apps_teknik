@@ -1,34 +1,72 @@
-﻿define(['app', '../js/sunucuAramaIletisim'], function (app, sunucuAramaIletisim) {
+﻿define(['app', '../js/sunucuAramaIletisim', '../js/filtreController'], function(app)
+{
+//var AramaFiltreController = function ($scope, $modalInstance, items) {
+	app.controller('AramaFiltreController', function($scope, $modalInstance, items)
+	{
+		$scope.items = items;
+		$scope.selected = {
+			item: $scope.items[0]
+		};
+
+		$scope.ok = function()
+		{
+			$modalInstance.close($scope.selected.item);
+		};
+
+		$scope.cancel = function()
+		{
+			$modalInstance.dismiss('cancel');
+		};
+	});
+
 	app.controller('araController',
     [
-		'$scope', 'sunucuAramaIletisim',
-        function ($scope, sai) {
-        	$scope.Arama = new Arama(sai);
-	        
+		'$scope', '$modal', 'sunucuAramaIletisim',
+        function ($scope, $modal, sunucuAramaIletisim) {
+        	$scope.items = ['item1', 'item2', 'item3'];
+        	$scope.Arama = new Arama($scope);
+
+        	$scope.aramaYap = function () {
+        		sunucuAramaIletisim.veriAl(this).then(function (sonuc) {
+        			var sonuc1 = sonuc;
+        			$scope.Arama.ayarla(sonuc1[0]);
+        		});
+        	}
+
+        	$scope.kriterAl = function()
+	        {
+        		var modalInstance = $modal.open({
+        			templateUrl: '/teknik/ara/views/filtre.html',
+        			controller: AramaFiltreController,
+        			resolve: {
+        				items: function () {
+        					return $scope.items;
+        				}
+        			}
+        		});
+
+        		modalInstance.result.then(function (selectedItem) {
+        			//$scope.selected = selectedItem;
+			        alert(selectedItem);
+		        }, function () {
+        			//$log.info('Modal dismissed at: ' + new Date());
+			        alert("dismissed");
+		        });
+	        }
         }
     ]);
 });
 
-
-//var AramaTipi = Object.freeze({PoliceArama: 0, TahsilatArama: 1, HasarArama: 2});
-function Arama(sunucuAramaIletisim)
+function Arama(scope)
 {
-	this.sunucuAramaIletisim = sunucuAramaIletisim;
+	this.scope = scope;
 	this.Baslik = "Poliçe Ara";
 	this.AramaKriterleri = new AramaKriterleri();
 	this.AramaSonuc = new AramaSonuc();
-	this.aramaYap = function ()
+	this.ayarla = function (sonuc)
 	{
-		//var gelen = sunucuAramaIletisim.manuel2();
-		//this.AramaSonuc = gelen;
-
-		sunucuAramaIletisim.veriAl().then(function(sonuc)
-		{
-			alert(sonuc);
-		});
+		this.AramaSonuc = sonuc;
 	};
-
-	
 }
 
 function AramaSonuc()

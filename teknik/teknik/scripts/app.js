@@ -1,6 +1,6 @@
 define(['routes', 'services/dependencyResolverFor'], function (config, dependencyResolverFor)
 {
-    var app = angular.module('app', ['ngRoute', 'ngResource']);
+	var app = angular.module('app', ['ngRoute', 'ngResource', 'ui.bootstrap']);
 
     app.config(
     [
@@ -11,6 +11,7 @@ define(['routes', 'services/dependencyResolverFor'], function (config, dependenc
         '$filterProvider',
         '$provide',
 		'$resourceProvider',
+		//'$',
 
         function ($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $resourceProvider)
         {
