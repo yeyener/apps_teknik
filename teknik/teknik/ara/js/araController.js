@@ -1,28 +1,28 @@
 ﻿define(['app', '../js/sunucuAramaIletisim', '../js/filtreController'], function(app)
 {
 //var AramaFiltreController = function ($scope, $modalInstance, items) {
-	app.controller('AramaFiltreController', function($scope, $modalInstance, items)
-	{
-		$scope.items = items;
-		$scope.selected = {
-			item: $scope.items[0]
-		};
+	//app.controller('AramaFiltreController', function($scope, $modalInstance, items)
+	//{
+	//	$scope.items = items;
+	//	$scope.selected = {
+	//		item: $scope.items[0]
+	//	};
 
-		$scope.ok = function()
-		{
-			$modalInstance.close($scope.selected.item);
-		};
+	//	$scope.ok = function()
+	//	{
+	//		$modalInstance.close($scope.selected.item);
+	//	};
 
-		$scope.cancel = function()
-		{
-			$modalInstance.dismiss('cancel');
-		};
-	});
+	//	$scope.cancel = function()
+	//	{
+	//		$modalInstance.dismiss('cancel');
+	//	};
+	//});
 
 	app.controller('araController',
     [
-		'$scope', '$modal', 'sunucuAramaIletisim',
-        function ($scope, $modal, sunucuAramaIletisim) {
+		'$scope', '$modal', 'sunucuAramaIletisim', 'filtreController',
+        function ($scope, $modal, sunucuAramaIletisim, filtreController) {
         	$scope.items = ['item1', 'item2', 'item3'];
         	$scope.Arama = new Arama($scope);
 
@@ -37,7 +37,7 @@
 	        {
         		var modalInstance = $modal.open({
         			templateUrl: '/teknik/ara/views/filtre.html',
-        			controller: AramaFiltreController,
+        			controller: filtreController,
         			resolve: {
         				items: function () {
         					return $scope.items;
